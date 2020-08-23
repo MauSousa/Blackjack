@@ -20,10 +20,9 @@ let puntosJugador = 0;
 // Referencias HTML
 
 const botonPedir = document.querySelector('#botonPedir');
-console.log(botonPedir);
 
 const puntosJugadorHtml = document.querySelectorAll('small');
-
+const divCartasJugador = document.querySelector('#jugador-cartas');
 
 
 
@@ -80,7 +79,22 @@ botonPedir.addEventListener('click', () => {
 	const carta = pedirCarta();
 	puntosJugador = puntosJugador + valorCarta(carta);
 	puntosJugadorHtml[0].innerText = puntosJugador;
+	
+	// Creacion de imagenes de forma dinamica
+	const imgCarta = document.createElement('img');
+	imgCarta.src = `assets/cartas/${carta}.png`;
+	imgCarta.classList.add('carta');	
+	divCartasJugador.append(imgCarta);
 
+	if(puntosJugador > 21){
+		console.warn('Te pasaste de 21, perdiste');
+		botonPedir.disabled = true;
+	}
+	else if(puntosJugador === 21){
+		console.warn('¡21, genial!');
+		botonPedir.disabled = true;
+
+	}
 
     
 });
