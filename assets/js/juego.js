@@ -8,9 +8,23 @@ Spades Picas
 
 */
 
+// Variables globales
 let deck = [ ]; // Creamos baraja de cartas
 const tipos = ['C', 'D', 'H', 'S'];
 const cartas_especiales = ['A', 'J', 'Q', 'K'];
+
+let puntosJugador = 0;
+	puntosComputadora = 0;
+
+
+// Referencias HTML
+
+const botonPedir = document.querySelector('#botonPedir');
+console.log(botonPedir);
+
+const puntosJugadorHtml = document.querySelectorAll('small');
+
+
 
 
 const crearDeck = () => {  // Creamos una función para agregar las cartas al deck
@@ -46,8 +60,6 @@ const pedirCarta = () => {
 
 
 	const carta = deck.pop();
-	console.log(deck);
-	console.log(carta);
 	return carta;
 }
 
@@ -62,9 +74,16 @@ const valorCarta = (carta) =>{
 		: valor * 1;
 }
 
-const valor = valorCarta(pedirCarta());
-console.log({valor});
+// Eventos
 
+botonPedir.addEventListener('click', () => {
+	const carta = pedirCarta();
+	puntosJugador = puntosJugador + valorCarta(carta);
+	puntosJugadorHtml[0].innerText = puntosJugador;
+
+
+    
+});
 
 
 
